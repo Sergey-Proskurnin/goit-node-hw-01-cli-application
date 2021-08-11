@@ -17,7 +17,7 @@ function getContactById(contactId) {
   fs.readFile(contactsPath)
     .then((data) => {
       const contacts = JSON.parse(data.toString());
-      const contact = contacts.filter(({ id }) => id === contactId);
+      const contact = contacts.filter(({ id }) => id === +contactId);
       if (contact.length === 0) {
         return console.log(`We have no contact with this id = ${contactId}!`);
       }
@@ -30,11 +30,11 @@ function removeContact(contactId) {
   fs.readFile(contactsPath)
     .then((data) => {
       const contacts = JSON.parse(data.toString());
-      const newContacts = contacts.filter(({ id }) => id !== contactId);
+      const newContacts = contacts.filter(({ id }) => id !== +contactId);
       if (contacts.length === newContacts.length) {
         return console.log(`We have no contact with this id = ${contactId}!`);
       }
-      const string = JSON.stringify(newContacts);
+      const string = JSON.stringify(newContacts, null, 2 );
       fs.writeFile(contactsPath, string).catch((err) =>
         console.log(err.message)
       );
@@ -73,7 +73,7 @@ function addContact(name, email, phone) {
         return console.log(`This ${phone} is already in contacts`);
       }
       const newContacts = [...contacts, newContact];
-      const string = JSON.stringify(newContacts);
+      const string = JSON.stringify(newContacts, null, 2 );
       fs.writeFile(contactsPath, string).catch((err) =>
         console.log(err.message)
       );
