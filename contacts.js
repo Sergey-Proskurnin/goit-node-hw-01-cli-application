@@ -16,7 +16,7 @@ function listContacts() {
 function getContactById(contactId) {
   fs.readFile(contactsPath)
     .then((data) => {
-      const contacts = JSON.parse(data.toString());
+      const contacts = JSON.parse(data);
       const contact = contacts.filter(({ id }) => id === +contactId);
       if (contact.length === 0) {
         return console.log(`We have no contact with this id = ${contactId}!`);
@@ -29,7 +29,7 @@ function getContactById(contactId) {
 function removeContact(contactId) {
   fs.readFile(contactsPath)
     .then((data) => {
-      const contacts = JSON.parse(data.toString());
+      const contacts = JSON.parse(data);
       const newContacts = contacts.filter(({ id }) => id !== +contactId);
       if (contacts.length === newContacts.length) {
         return console.log(`We have no contact with this id = ${contactId}!`);
