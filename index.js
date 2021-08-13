@@ -38,7 +38,4 @@ function invokeAction({ action, id, name, email, phone }) {
 
 invokeAction(argv);
 
-// contacts.listContacts();
-// contacts.getContactById(10);
-// contacts.removeContact(4);
-// contacts.addContact('Jone Smitch', 'jonesmitch@ps.ua', '(045) 534-4318')
+
